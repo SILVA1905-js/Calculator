@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        
+.operar{
+  
+  left: 39%;
+  top: 20%;
+position: absolute;
+border: 7px solid black;
+border-radius: 25px ;
+background-color: black;
+
+
+}
+
+.resultado {
+background-color: black;
+color: white;
+text-align: right;
+margin: 5px;
+width: 350px;
+overflow:initial;
+height: 30px;
+font-family: 'Courier New', Courier, monospace;
+font-size: 28px;
+
+}
+.operar button{
+ display:inline-block;
+text-align: center;
+    height: 88px;
+width: 88px;
+cursor: pointer;
+background-color: rgb(70, 68, 68);
+color: white;
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+font-size: 30px;
+
+
+}
+    
+   
+  body{
+   background-image: linear-gradient(45deg, black, grey);
+   font-family: 'Courier New', Courier, monospace
+left 90px;
+
+
+    
+   }
+   h1{
+    text-align: center;
+    top:19px;
+    color:white ;
+    font-family:'Courier New', Courier, monospace;
+   }
+   button#igual {
+  grid-column: span 2;
+  background-color: rgb(173, 114, 3);
+  
+}
+   .operacaos  {
+   background-color: white;
+    
+    
+   }
+   #reset{
+    background-color: grey;
+   }
+   #mult{
+    background-color: grey;
+   }
+#divisao{
+  background-color: grey;
+}
+#apaga{
+  background-color: grey;
+}
+#adicao{
+  background-color: grey;
+}
+#menos{
+  background-color: grey;
+  
+}
+.assinatura{
+  text-align: center;
+
+}
+    </style>
+</head>
+
+<body>
+    <body>
+
+
+<p class="assinatura">By Alessandro</p>
+<div class="operar">
+  <h1>
+    Calculator
+  </h1>
+  <h2>-----------</h2>
+  <p class="resultado"></p>
+  <p></p>
+  <p></p>
+<button class="operacao" onclick="reset('')" id="reset">C</button>
+<button class="operacao" onclick="operacoes('*')" id="mult">X</button>
+<button class="operacao" onclick="operacoes('/')" id="divisao">÷</button>
+<button class="operacao" onclick="apagador('')" id="apaga">&lt;</button>
+
+<div>
+  
+<button class="operacao" onclick="insert('9')" id="9">9</button>
+<button class="operacao" onclick="insert('8')" id="8">8</button>
+<button class="operacao" onclick="insert('7')" id="7">7</button>
+<button class="operacao" onclick="operacoes('+')" id="adicao">+</button>
+</div>
+<div>
+  <button class="operacao" onclick="insert('6')" id="6">6</button>
+<button class="operacao" onclick="insert('5')" id="5">5</button>
+<button class="operacao" onclick="insert('4')" id="4">4</button>
+<button class="operacao" onclick="operacoes('-')" id="menos">-</button>
+</div>
+<div>
+  <button class="operacao" onclick="insert('3')" id="3">3</button>
+  <button class="operacao" onclick="insert('2')" id="2">2</button>
+  <button class="operacao" onclick="insert('1')" id="1">1</button>
+  <button class="operacao" onclick="resultadodcont()" id="igual">=</button>
+  </div>
+  <div>
+    <button class="operacao" onclick="insert('0')" id="zero">0</button>
+    <button class="operacao" onclick="insert(',')" id=",">,</button>
+</div>
+</div>
+               
+<script>
+var MAX_CHARS = 22;
+ function insert(numero) {
+  document.querySelector(".resultado").textContent += numero;
+}
+function operacoes(operacoes){
+  document.querySelector(".resultado").textContent += operacoes
+}
+function reset(resetar){
+  document.querySelector(".resultado").textContent = resetar
+}
+function apagador(){
+  var resultado = document.querySelector('.resultado').innerHTML;
+  document.querySelector(".resultado").textContent = resultado.substring(0, resultado.length -1);
+}
+function resultadodcont(){
+  var expressao = document.querySelector(".resultado").textContent;
+  document.querySelector(".resultado").textContent = eval(expressao);
+}
+
+//Criando "reconhecedor de teclas"
+document.addEventListener('keydown', function(event) {
+  // Verifique se a tecla pressionada é um número (0-9)
+  if (event.key >= '0' && event.key <= '9') {
+    insert(event.key);
+  }
+  // Verifique se a tecla pressionada é um operador (+, -, *, /)
+  else if (event.key === '+' || event.key === '-' || event.key === '*' || event.key === '/') {
+    operacoes(event.key);
+  }
+  // Verifique se a tecla pressionada é a tecla Enter (=)
+  else if (event.key === 'Enter') {
+    resultadodcont();
+  }
+  // Verifique se a tecla pressionada é a tecla Backspace (<)
+  else if (event.key === 'Backspace') {
+    apagador();
+  }
+  function insert(numero) {
+  if (document.querySelector(".resultado").textContent.length >= MAX_CHARS) {
+    return;
+  }
+  document.querySelector(".resultado").textContent += numero;
+}
+
+});
+</script>         
+                            
+
+
+
+</body>
+</html>
